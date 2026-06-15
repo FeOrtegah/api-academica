@@ -23,7 +23,6 @@ class NotaServiceTest {
 
     @Test
     void guardarNota_ConValorValido_DeberiaGuardar() {
-        // Nota(id, valor, estudianteId, evaluacionId, comentario)
         Nota nota = new Nota(null, 5.5, 100L, 50L, null);
         when(notaRepository.save(nota)).thenReturn(nota);
 
