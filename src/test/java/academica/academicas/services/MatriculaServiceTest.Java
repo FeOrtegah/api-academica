@@ -25,16 +25,13 @@ class MatriculaServiceTest {
 
     @Test
     void listarPorEstudianteId_DeberiaRetornarLista() {
-        // Arrange
         Long estId = 500L;
         Matricula m1 = new Matricula(1L, estId, 1L);
         Matricula m2 = new Matricula(2L, estId, 2L);
         when(matriculaRepository.findByEstudianteId(estId)).thenReturn(Arrays.asList(m1, m2));
 
-        // Act
         List<Matricula> result = matriculaService.listarPorEstudianteId(estId);
 
-        // Assert
         assertThat(result).hasSize(2);
         assertThat(result.get(0).getEstudianteId()).isEqualTo(estId);
         verify(matriculaRepository, times(1)).findByEstudianteId(estId);
@@ -42,14 +39,11 @@ class MatriculaServiceTest {
 
     @Test
     void guardarMatricula_DeberiaLlamarAlRepositorio() {
-        // Arrange
         Matricula m = new Matricula(null, 100L, 1L);
         when(matriculaRepository.save(m)).thenReturn(m);
 
-        // Act
         Matricula saved = matriculaService.guardarMatricula(m);
 
-        // Assert
         assertThat(saved).isNotNull();
         verify(matriculaRepository, times(1)).save(m);
     }
