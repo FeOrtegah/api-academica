@@ -24,14 +24,11 @@ class AsignaturaServiceTest {
 
     @Test
     void obtenerAsignaturaPorId_DeberiaRetornarAsignatura() {
-        // Arrange
         Asignatura asig = new Asignatura(1L, "Matemáticas", 1L, 10L);
         when(asignaturaRepository.findById(1L)).thenReturn(Optional.of(asig));
 
-        // Act
         Optional<Asignatura> resultado = asignaturaService.obtenerAsignaturaPorId(1L);
 
-        // Assert
         assertThat(resultado).isPresent();
         assertThat(resultado.get().getNombre()).isEqualTo("Matemáticas");
         verify(asignaturaRepository, times(1)).findById(1L);
